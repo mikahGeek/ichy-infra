@@ -36,7 +36,8 @@ resource "aws_iam_role_policy" "ssm_policy" {
                 "ssmmessages:CreateControlChannel",
                 "ssmmessages:CreateDataChannel",
                 "ssmmessages:OpenControlChannel",
-                "ssmmessages:OpenDataChannel"
+                "ssmmessages:OpenDataChannel",
+		"ssm:*"
       ],
       "Effect": "Allow",
       "Resource": "*"
