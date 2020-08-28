@@ -37,7 +37,8 @@ resource "aws_iam_role_policy" "ssm_policy" {
                 "ssmmessages:CreateDataChannel",
                 "ssmmessages:OpenControlChannel",
                 "ssmmessages:OpenDataChannel",
-		"ssm:*"
+		"ssm:*",
+		"ec2-instance-connect:SendSSHPublicKey"
       ],
       "Effect": "Allow",
       "Resource": "*"
