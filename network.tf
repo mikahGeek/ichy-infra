@@ -1,4 +1,4 @@
-## create vpc specifically for ichy resources
+# create vpc specifically for ichy resources
 resource "aws_vpc" "ichy" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -6,12 +6,12 @@ resource "aws_vpc" "ichy" {
   }
 }
 
-## attach vpc to gateway
+# attach vpc to gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.ichy.id
 }
 
-## subnet the ichy resources (for now just take the full cidr)
+# subnet the ichy resources
 resource "aws_subnet" "ichy" {
   vpc_id = aws_vpc.ichy.id
   cidr_block = "10.0.0.0/16"
@@ -21,8 +21,9 @@ resource "aws_subnet" "ichy" {
   }
 }
 
-## new security group with http and ssh open (todo: fix this!)
+# new security group with http and ssh open (todo: fix this!)
 resource "aws_security_group" "ichy" {
+  vpc_id = aws_vpc.ichy.id
   name        = "ichy"
 
   # SSH access from anywhere
